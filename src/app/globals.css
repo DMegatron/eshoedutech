@@ -30,6 +30,32 @@
   --color-navy-950: #06172a;
 
   --color-muted: #5b6b7f; /* subtle grey body text */
+
+  /* Motion tokens — slow, understated, professional */
+  --animate-drift: drift 24s ease-in-out infinite alternate;
+  --animate-drift-slow: drift 32s ease-in-out infinite alternate-reverse;
+  --animate-float: float-y 3.4s ease-in-out infinite;
+  --animate-pulse-ring: pulse-ring 2.8s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  --animate-shimmer: shimmer 7s linear infinite;
+
+  @keyframes drift {
+    from { transform: translate3d(0, 0, 0) scale(1); }
+    to { transform: translate3d(6%, -3%, 0) scale(1.07); }
+  }
+
+  @keyframes float-y {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(3px); }
+  }
+
+  @keyframes pulse-ring {
+    0% { transform: scale(1); opacity: 0.45; }
+    70%, 100% { transform: scale(1.55); opacity: 0; }
+  }
+
+  @keyframes shimmer {
+    to { background-position: 200% center; }
+  }
 }
 
 html {
@@ -71,11 +97,11 @@ section[id] {
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-skyblue-500 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-skyblue-500/25 transition-all duration-200 hover:-translate-y-0.5 hover:bg-skyblue-600 hover:shadow-lg hover:shadow-skyblue-500/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-skyblue-400 focus-visible:ring-offset-2;
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-skyblue-500 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-skyblue-500/25 transition-all duration-200 hover:-translate-y-0.5 hover:bg-skyblue-600 hover:shadow-lg hover:shadow-skyblue-500/30 active:scale-[0.97] focus:outline-none focus-visible:ring-2 focus-visible:ring-skyblue-400 focus-visible:ring-offset-2;
   }
 
   .btn-outline {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-navy-800 transition-all duration-200 hover:-translate-y-0.5 hover:border-skyblue-400 hover:text-skyblue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-skyblue-400 dark:border-navy-600 dark:bg-navy-800 dark:text-slate-100 dark:hover:border-skyblue-500 dark:hover:text-skyblue-300;
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-navy-800 transition-all duration-200 hover:-translate-y-0.5 hover:border-skyblue-400 hover:text-skyblue-600 active:scale-[0.97] focus:outline-none focus-visible:ring-2 focus-visible:ring-skyblue-400 dark:border-navy-600 dark:bg-navy-800 dark:text-slate-100 dark:hover:border-skyblue-500 dark:hover:text-skyblue-300;
   }
 
   .btn-lg {
@@ -91,17 +117,32 @@ section[id] {
   }
 
   .eyebrow::before {
+
+/* Respect OS-level reduced motion: dampen CSS motion and disable smooth scrolling */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
     content: "";
     @apply inline-block h-px w-8 bg-skyblue-500;
   }
 
   /* Info card — white in light mode, elevated navy in dark mode */
   .card {
-    @apply rounded-2xl border border-slate-200 bg-white shadow-sm transition-shadow duration-300 dark:border-navy-700 dark:bg-navy-800;
+    @apply rounded-2xl border border-slate-200 bg-white shadow-sm transition-[transform,box-shadow,border-color] duration-300 ease-out dark:border-navy-700 dark:bg-navy-800;
   }
 
   .card-hover {
-    @apply hover:border-skyblue-300 hover:shadow-lg hover:shadow-skyblue-500/10;
+    @apply hover:-translate-y-1 hover:border-skyblue-300 hover:shadow-lg hover:shadow-skyblue-500/10;
   }
 
   .bg-grid-light {

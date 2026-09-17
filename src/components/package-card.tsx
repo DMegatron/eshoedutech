@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { ArrowRight, Check, FlaskConical } from "lucide-react";
 import { PackageName } from "@/components/package-name";
 import type { Package } from "@/data/packages";
@@ -6,7 +5,7 @@ import type { Package } from "@/data/packages";
 /** Compact package card — homepage grid + cross-links */
 export function PackageCard({ pkg, compact = false }: { pkg: Package; compact?: boolean }) {
   return (
-    <a href={`/packages/${pkg.slug}`} className="block h-full" aria-label={`View package: ${pkg.name}`}>
+    <a href={`/packages/${pkg.slug}`} className="group block h-full" aria-label={`View package: ${pkg.name}`}>
       <article
         className={
           "card relative flex h-full flex-col p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg " +
@@ -58,7 +57,7 @@ export function PackageCard({ pkg, compact = false }: { pkg: Package; compact?: 
             <p className="text-[11px] text-slate-500 dark:text-slate-400">✓ Practical/Lab training</p>
           </div>
           <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-skyblue-600 dark:text-skyblue-400">
-            Details <ArrowRight size={15} aria-hidden="true" />
+            Details <ArrowRight size={15} className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
           </span>
         </div>
       </article>

@@ -3,6 +3,7 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import { ConsoleNotice } from "@/components/console-notice";
 import { CookieConsent } from "@/components/cookie-consent";
 import { BackToTop } from "@/components/back-to-top";
+import { MotionProvider } from "@/components/motion-provider";
 import "./globals.css";
 
 const grotesk = Space_Grotesk({
@@ -40,10 +41,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="en" suppressHydrationWarning className={`${grotesk.variable} ${inter.variable} h-full antialiased`}>
       <body className="min-h-full bg-white font-sans text-slate-600 dark:bg-navy-900 dark:text-slate-300">
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
-        <ConsoleNotice />
-        {children}
-        <CookieConsent />
-        <BackToTop />
+        <MotionProvider>
+          <ConsoleNotice />
+          {children}
+          <CookieConsent />
+          <BackToTop />
+        </MotionProvider>
       </body>
     </html>
   );

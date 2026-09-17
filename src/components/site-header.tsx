@@ -3,8 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, type Variants } from "framer-motion";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { navLinks, site } from "@/data/site";
@@ -22,10 +21,29 @@ export function scrollToSection(href: string) {
   }
 }
 
+/** Mobile menu: links drift in with a gentle stagger */
+const menuList: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.045, delayChildren: 0.1 } },
+};
+
+const menuItem: Variants = {
+  hidden: { opacity: 0, x: -10 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] } },
+};
+
 export function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const pathname = usePathname();
+  const [scrolled, setScrolled] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+
+  /** Soft shadow under the header once the page starts scrolling */
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
@@ -45,10 +63,13 @@ export function SiteHeader() {
     window.setTimeout(() => scrollToSection(href), closeMs + 50);
   };
 
-  const HOME = pathname === "/";
-
   return (
-    <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/90 backdrop-blur-md dark:border-navy-700/80 dark:bg-navy-900/85">
+    <header
+      className={cn(
+        "sticky top-0 z-40 border-b border-slate-200/80 bg-white/90 backdrop-blur-md transition-shadow duration-300 dark:border-navy-700/80 dark:bg-navy-900/85",
+        scrolled && "shadow-[0_10px_30px_-12px_rgba(11,32,56,0.18)] dark:shadow-[0_10px_30px_-12px_rgba(0,0,0,0.45)]"
+      )}
+    >
       <div className="container-max flex h-14 sm:h-[68px] items-center justify-between gap-3">
         {/* Brand */}
         <Link href="/" className="flex min-w-0 items-center gap-2 sm:gap-3" aria-label="Esho EDUTECH home">
@@ -113,18 +134,25 @@ export function SiteHeader() {
             id="mobile-menu"
             className="overflow-hidden border-t border-slate-200 bg-white lg:hidden dark:border-navy-700 dark:bg-navy-900"
           >
-            <nav className="container-max flex flex-col gap-1 py-4" aria-label="Mobile">
+            <motion.nav
+              variants={menuList}
+              initial="hidden"
+              animate="visible"
+              className="container-max flex flex-col gap-1 py-4"
+              aria-label="Mobile"
+            >
               {navLinks.map((link) => (
-                <a
+                <motion.a
+                  variants={menuItem}
                   key={link.label}
                   href={link.href}
                   onClick={(e) => handleNav(e, link.href)}
                   className="rounded-lg px-3 py-2.5 text-sm font-medium text-navy-800 transition-colors hover:bg-skyblue-50 hover:text-skyblue-700 dark:text-slate-200 dark:hover:bg-navy-800 dark:hover:text-skyblue-400"
                 >
                   {link.label}
-                </a>
+                </motion.a>
               ))}
-              <div className="mt-3 flex flex-col gap-2 border-t border-slate-100 pt-3 dark:border-navy-700">
+              <motion.div variants={menuItem} className="mt-3 flex flex-col gap-2 border-t border-slate-100 pt-3 dark:border-navy-700">
                 <a
                   href={site.phoneHref}
                   className="rounded-lg bg-skyblue-50 px-3 py-2.5 text-sm font-semibold text-skyblue-700 text-center dark:bg-navy-800 dark:text-skyblue-300"
@@ -138,8 +166,8 @@ export function SiteHeader() {
                 >
                   Enquire Now
                 </a>
-              </div>
-            </nav>
+              </motion.div>
+            </motion.nav>
           </motion.div>
         )}
       </AnimatePresence>

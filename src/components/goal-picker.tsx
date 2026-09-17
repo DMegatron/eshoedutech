@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/section-heading";
@@ -109,7 +110,7 @@ export function GoalPicker() {
               onClick={() => setActive(i)}
               aria-pressed={active === i}
               className={
-                "rounded-full border px-3.5 py-2 text-[13px] sm:text-sm font-semibold transition-all duration-200 " +
+                "rounded-full border px-3.5 py-2 text-[13px] sm:text-sm font-semibold transition-all duration-200 active:scale-95 " +
                 (active === i
                   ? "border-skyblue-500 bg-skyblue-500 text-white shadow-md shadow-skyblue-500/25"
                   : "border-slate-200 bg-white text-navy-800 hover:border-skyblue-300 hover:text-skyblue-700 dark:border-navy-600 dark:bg-navy-800 dark:text-slate-200 dark:hover:border-skyblue-400 dark:hover:text-skyblue-400")
@@ -120,7 +121,15 @@ export function GoalPicker() {
           ))}
         </div>
 
-        <div className="mx-auto mt-6 grid max-w-3xl gap-3 sm:mt-8 sm:grid-cols-2 sm:gap-4">
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={active}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+            className="mx-auto mt-6 grid max-w-3xl gap-3 sm:mt-8 sm:grid-cols-2 sm:gap-4"
+          >
           <Link
             href={GOALS[active].recommended.href}
             className="card card-hover group border-skyblue-300 p-5 sm:p-6"
@@ -168,7 +177,8 @@ export function GoalPicker() {
               </p>
             </div>
           )}
-        </div>
+          </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   );

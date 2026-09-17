@@ -32,7 +32,7 @@ export function CredentialsSection() {
               </thead>
               <tbody className="divide-y divide-slate-100 dark:divide-navy-700">
                 {courses.map((c) => (
-                  <tr key={c.slug}>
+                  <tr key={c.slug} className="transition-colors hover:bg-skyblue-50/40 dark:hover:bg-navy-700/40">
                     <td className="px-4 py-3 font-semibold text-navy-900 dark:text-white">{c.code}</td>
                     <td className="px-4 py-3 text-slate-400 italic dark:text-slate-500">{STATUS}</td>
                     <td className="px-4 py-3 text-slate-400 italic dark:text-slate-500">{STATUS}</td>

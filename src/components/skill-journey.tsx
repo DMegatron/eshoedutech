@@ -77,7 +77,7 @@ export function SkillJourney() {
                 </div>
                 {i < TIERS.length - 1 && (
                   <div className="flex justify-center py-2.5" aria-hidden="true">
-                    <MoveDown size={18} className="text-skyblue-300 dark:text-skyblue-600" />
+                    <MoveDown size={18} className="animate-float text-skyblue-300 dark:text-skyblue-600" />
                   </div>
                 )}
               </div>

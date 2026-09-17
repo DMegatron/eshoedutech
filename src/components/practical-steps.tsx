@@ -27,11 +27,11 @@ export function PracticalSteps() {
         <div className="mt-9 sm:mt-12 grid gap-3 sm:gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
           {STEPS.map((step, i) => (
             <Reveal key={step.title} delay={i * 0.07} className="h-full">
-              <div className="relative flex h-full flex-col items-center rounded-2xl border border-skyblue-100 bg-white p-4 sm:p-6 text-center shadow-sm dark:border-navy-700 dark:bg-navy-800">
+              <div className="group relative flex h-full flex-col items-center rounded-2xl border border-skyblue-100 bg-white p-4 sm:p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-skyblue-300 hover:shadow-lg hover:shadow-skyblue-500/10 dark:border-navy-700 dark:bg-navy-800 dark:hover:border-skyblue-600">
                 <span className="absolute right-3 top-3 font-display text-xs font-bold text-skyblue-300 dark:text-skyblue-600">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-skyblue-50 text-skyblue-600 sm:h-12 sm:w-12 dark:bg-navy-700 dark:text-skyblue-400">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-skyblue-50 text-skyblue-600 transition-transform duration-300 group-hover:scale-110 sm:h-12 sm:w-12 dark:bg-navy-700 dark:text-skyblue-400">
                   <step.icon size={20} aria-hidden="true" />
                 </div>
                 <h3 className="mt-3 font-display text-sm sm:text-base font-semibold text-navy-900 dark:text-white">{step.title}</h3>
