@@ -13,9 +13,16 @@ const ENQUIRY_FROM =
   "Esho EDUTECH Website <onboarding@resend.dev>";
 
 const MAX_LEN = 2000;
+// reCAPTCHA v2 tokens are machine-generated and can exceed 3 KB — never apply
+// the generic field cap to them (a truncated token always fails siteverify).
+const CAPTCHA_TOKEN_MAX_LEN = 8192;
 
 function field(v: unknown): string {
   return typeof v === "string" ? v.trim().slice(0, MAX_LEN) : "";
+}
+
+function captchaTokenField(v: unknown): string {
+  return typeof v === "string" ? v.trim().slice(0, CAPTCHA_TOKEN_MAX_LEN) : "";
 }
 
 function esc(s: string): string {
@@ -96,7 +103,7 @@ export async function POST(req: Request) {
   // reCAPTCHA v2 — enforced when RECAPTCHA_SECRET_KEY is configured
   const captchaSecret = process.env.RECAPTCHA_SECRET_KEY;
   if (captchaSecret) {
-    const token = field(data.captchaToken);
+    const token = captchaTokenField(data.captchaToken);
     const result = token ? await verifyCaptcha(token, ip, captchaSecret) : { ok: false, codes: ["token-missing"] };
     if (!result.ok) {
       console.error("[enquiry] reCAPTCHA rejected:", result.codes);
