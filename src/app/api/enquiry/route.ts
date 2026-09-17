@@ -26,7 +26,11 @@ function esc(s: string): string {
 }
 
 /** Verify a reCAPTCHA v2 token against Google's siteverify endpoint. */
-async function verifyCaptcha(token: string, ip: string, secret: string): Promise<boolean> {
+async function verifyCaptcha(
+  token: string,
+  ip: string,
+  secret: string,
+): Promise<{ ok: boolean; codes: string[] }> {
   try {
     const res = await fetch("https://www.google.com/recaptcha/api/siteverify", {
       method: "POST",
@@ -34,11 +38,11 @@ async function verifyCaptcha(token: string, ip: string, secret: string): Promise
       body: new URLSearchParams({ secret, response: token, remoteip: ip }),
       cache: "no-store",
     });
-    const json = (await res.json()) as { success?: boolean };
-    return json.success === true;
+    const json = (await res.json()) as { success?: boolean; "error-codes"?: string[] };
+    return { ok: json.success === true, codes: json["error-codes"] ?? [] };
   } catch (err) {
-    console.error("[enquiry] reCAPTCHA verify failed:", err);
-    return false;
+    console.error("[enquiry] reCAPTCHA verify request failed:", err);
+    return { ok: false, codes: ["siteverify-unreachable"] };
   }
 }
 
@@ -93,9 +97,15 @@ export async function POST(req: Request) {
   const captchaSecret = process.env.RECAPTCHA_SECRET_KEY;
   if (captchaSecret) {
     const token = field(data.captchaToken);
-    if (!token || !(await verifyCaptcha(token, ip, captchaSecret))) {
+    const result = token ? await verifyCaptcha(token, ip, captchaSecret) : { ok: false, codes: ["token-missing"] };
+    if (!result.ok) {
+      console.error("[enquiry] reCAPTCHA rejected:", result.codes);
       return NextResponse.json(
-        { ok: false, error: "reCAPTCHA verification failed — please tick the box and try again." },
+        {
+          ok: false,
+          error: "reCAPTCHA verification failed — please tick the box and try again.",
+          codes: result.codes,
+        },
         { status: 400 },
       );
     }
