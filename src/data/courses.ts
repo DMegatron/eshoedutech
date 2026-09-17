@@ -15,12 +15,12 @@ export interface Course {
   benefits: string[]; // "Why learn this course?"
   skills: string[];
   outcome: { description: string; careerAreas: string[] };
-  credentials: string; // never fabricate — placeholder until Esho EduTech confirms
+  credentials: string; // never fabricate — placeholder until Esho EDUTECH confirms
   relatedCourses: string[];
 }
 
 export const CREDENTIALS_PLACEHOLDER =
-  "Certification information: to be confirmed by Esho EduTech.";
+  "Certification information: to be confirmed by Esho EDUTECH.";
 
 export const courses: Course[] = [
   {

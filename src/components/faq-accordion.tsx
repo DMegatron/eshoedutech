@@ -12,7 +12,7 @@ export function FaqAccordion() {
   const [open, setOpen] = useState(0);
 
   return (
-    <section id="faq" className="bg-white">
+    <section id="faq" className="bg-white dark:bg-navy-900">
       <div className="container-max py-14 sm:py-20">
         <div className="mx-auto max-w-3xl">
           <Reveal>
@@ -25,7 +25,7 @@ export function FaqAccordion() {
           </Reveal>
 
           <Reveal delay={0.08}>
-            <div className="mt-9 divide-y divide-slate-200 rounded-2xl border border-slate-200 bg-white shadow-sm">
+            <div className="mt-9 divide-y divide-slate-200 rounded-2xl border border-slate-200 bg-white shadow-sm dark:divide-navy-700 dark:border-navy-700 dark:bg-navy-800">
               {faqs.map((faq, i) => {
                 const isOpen = open === i;
                 return (
@@ -35,9 +35,9 @@ export function FaqAccordion() {
                       aria-expanded={isOpen}
                       aria-controls={`faq-panel-${i}`}
                       onClick={() => setOpen(isOpen ? -1 : i)}
-                      className="flex w-full items-center justify-between gap-4 px-4 py-4 sm:px-6 sm:py-5 text-left transition-colors hover:bg-skyblue-50/50"
+                      className="flex w-full items-center justify-between gap-4 px-4 py-4 sm:px-6 sm:py-5 text-left transition-colors hover:bg-skyblue-50/50 dark:hover:bg-navy-700/40"
                     >
-                      <span className="font-display text-sm sm:text-base font-semibold text-navy-900">
+                      <span className="font-display text-sm sm:text-base font-semibold text-navy-900 dark:text-white">
                         {faq.question}
                       </span>
                       <ChevronDown
@@ -59,7 +59,7 @@ export function FaqAccordion() {
                           transition={{ duration: 0.3, ease: "easeInOut" }}
                           className="overflow-hidden"
                         >
-                          <p className="px-4 pb-4 sm:px-6 sm:pb-5 text-sm leading-relaxed text-slate-600">
+                          <p className="px-4 pb-4 sm:px-6 sm:pb-5 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
                             {faq.answer}
                           </p>
                         </motion.div>

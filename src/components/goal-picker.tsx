@@ -5,12 +5,20 @@ import Link from "next/link";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/section-heading";
+import { PackageName } from "@/components/package-name";
+import { getPackageBySlug } from "@/data/packages";
 
 /** §25 — "Which program is right for me?" — one of the strongest conversion tools */
+interface GoalEntry {
+  name: string;
+  note: string;
+  href: string;
+  pkg?: string; // package slug — renders the name as course-code badges
+}
 interface Goal {
   label: string;
-  recommended: { name: string; note: string; href: string };
-  next?: { name: string; note: string; href: string };
+  recommended: GoalEntry;
+  next?: GoalEntry;
 }
 
 const GOALS: Goal[] = [
@@ -27,11 +35,13 @@ const GOALS: Goal[] = [
     label: "I want to enter Networking",
     recommended: {
       name: "A+ + N+ + CCNA",
+      pkg: "aplus-nplus-ccna",
       note: "₹4,999 · from fundamentals into Cisco configuration.",
       href: "/packages/aplus-nplus-ccna",
     },
     next: {
       name: "Advanced: A+ + N+ + CCNA + CCNP",
+      pkg: "aplus-nplus-ccna-ccnp",
       note: "₹9,999 · add enterprise-level networking.",
       href: "/packages/aplus-nplus-ccna-ccnp",
     },
@@ -40,11 +50,13 @@ const GOALS: Goal[] = [
     label: "System Administration",
     recommended: {
       name: "A+ + N+ + MCSE",
+      pkg: "aplus-nplus-mcse",
       note: "₹4,999 · hardware, networking and Microsoft servers.",
       href: "/packages/aplus-nplus-mcse",
     },
     next: {
       name: "Or: A+ + N+ + MCSE + CCNA",
+      pkg: "aplus-nplus-mcse-ccna",
       note: "₹6,999 · systems and networks together.",
       href: "/packages/aplus-nplus-mcse-ccna",
     },
@@ -53,6 +65,7 @@ const GOALS: Goal[] = [
     label: "I am interested in Linux",
     recommended: {
       name: "A+ + N+ + Linux",
+      pkg: "aplus-nplus-linux",
       note: "₹4,999 · foundations plus Linux administration.",
       href: "/packages/aplus-nplus-linux",
     },
@@ -67,11 +80,17 @@ const GOALS: Goal[] = [
   },
 ];
 
+/** Package-linked goals render as course-code badges; plain names fall back to text */
+function GoalTitle({ entry }: { entry: GoalEntry }) {
+  const pkg = entry.pkg ? getPackageBySlug(entry.pkg) : undefined;
+  return pkg ? <PackageName pkg={pkg} /> : <>{entry.name}</>;
+}
+
 export function GoalPicker() {
   const [active, setActive] = useState(1);
 
   return (
-    <section id="pick" className="border-y border-skyblue-100 bg-skyblue-50/70">
+    <section id="pick" className="border-y border-skyblue-100 bg-skyblue-50/70 dark:border-navy-700 dark:bg-navy-800/40">
       <div className="container-max py-14 sm:py-20">
         <Reveal>
           <SectionHeading
@@ -93,7 +112,7 @@ export function GoalPicker() {
                 "rounded-full border px-3.5 py-2 text-[13px] sm:text-sm font-semibold transition-all duration-200 " +
                 (active === i
                   ? "border-skyblue-500 bg-skyblue-500 text-white shadow-md shadow-skyblue-500/25"
-                  : "border-slate-200 bg-white text-navy-800 hover:border-skyblue-300 hover:text-skyblue-700")
+                  : "border-slate-200 bg-white text-navy-800 hover:border-skyblue-300 hover:text-skyblue-700 dark:border-navy-600 dark:bg-navy-800 dark:text-slate-200 dark:hover:border-skyblue-400 dark:hover:text-skyblue-400")
               }
             >
               {goal.label}
@@ -109,11 +128,11 @@ export function GoalPicker() {
             <span className="chip gap-1.5 bg-skyblue-500 text-white">
               <Sparkles size={11} aria-hidden="true" /> Recommended
             </span>
-            <h3 className="mt-3 font-display text-base sm:text-lg font-semibold text-navy-900">
-              {GOALS[active].recommended.name}
+            <h3 className="mt-3 font-display text-base sm:text-lg font-semibold text-navy-900 dark:text-white">
+              <GoalTitle entry={GOALS[active].recommended} />
             </h3>
-            <p className="mt-1 text-[13px] sm:text-sm text-slate-600">{GOALS[active].recommended.note}</p>
-            <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-skyblue-600 group-hover:text-skyblue-700">
+            <p className="mt-1 text-[13px] sm:text-sm text-slate-600 dark:text-slate-300">{GOALS[active].recommended.note}</p>
+            <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-skyblue-600 group-hover:text-skyblue-700 dark:text-skyblue-400 dark:group-hover:text-skyblue-300">
               View program <ArrowRight size={15} aria-hidden="true" />
             </span>
           </Link>
@@ -123,22 +142,26 @@ export function GoalPicker() {
               href={GOALS[active].next!.href}
               className="card card-hover group p-5 sm:p-6"
             >
-              <span className="chip bg-skyblue-100 text-skyblue-800">{GOALS[active].next!.name.split(":")[0]}</span>
-              <h3 className="mt-3 font-display text-base sm:text-lg font-semibold text-navy-900">
-                {GOALS[active].next!.name.includes(":")
-                  ? GOALS[active].next!.name.split(":").slice(1).join(":").trim()
-                  : GOALS[active].next!.name}
+              <span className="chip bg-skyblue-100 text-skyblue-800 dark:bg-skyblue-900/50 dark:text-skyblue-300">{GOALS[active].next!.name.split(":")[0]}</span>
+              <h3 className="mt-3 font-display text-base sm:text-lg font-semibold text-navy-900 dark:text-white">
+                {GOALS[active].next!.pkg ? (
+                  <GoalTitle entry={GOALS[active].next!} />
+                ) : GOALS[active].next!.name.includes(":") ? (
+                  GOALS[active].next!.name.split(":").slice(1).join(":").trim()
+                ) : (
+                  GOALS[active].next!.name
+                )}
               </h3>
-              <p className="mt-1 text-[13px] sm:text-sm text-slate-600">{GOALS[active].next!.note}</p>
-              <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-skyblue-600 group-hover:text-skyblue-700">
+              <p className="mt-1 text-[13px] sm:text-sm text-slate-600 dark:text-slate-300">{GOALS[active].next!.note}</p>
+              <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-skyblue-600 group-hover:text-skyblue-700 dark:text-skyblue-400 dark:group-hover:text-skyblue-300">
                 View program <ArrowRight size={15} aria-hidden="true" />
               </span>
             </Link>
           ) : (
             <div className="card flex flex-col justify-center p-5 text-center sm:p-6">
-              <p className="text-sm text-slate-500">
+              <p className="text-sm text-slate-500 dark:text-slate-400">
                 Not sure?{" "}
-                <a href="/#contact" className="font-semibold text-skyblue-600 hover:underline">
+                <a href="/#contact" className="font-semibold text-skyblue-600 hover:underline dark:text-skyblue-400">
                   Ask an advisor
                 </a>{" "}
                 — we'll help you pick the right path.

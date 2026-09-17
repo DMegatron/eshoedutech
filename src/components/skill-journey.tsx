@@ -33,7 +33,7 @@ const TIERS = [
 
 export function SkillJourney() {
   return (
-    <section id="journey" className="bg-white">
+    <section id="journey" className="bg-white dark:bg-navy-900">
       <div className="container-max py-14 sm:py-20">
         <Reveal>
           <SectionHeading
@@ -57,19 +57,19 @@ export function SkillJourney() {
                   }
                 >
                   <div className="flex items-start gap-4">
-                    <div className="hidden sm:flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-skyblue-50 font-display font-bold text-skyblue-600">
+                    <div className="hidden sm:flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-skyblue-50 font-display font-bold text-skyblue-600 dark:bg-navy-700 dark:text-skyblue-300">
                       {i + 1}
                     </div>
                     <div className="min-w-0">
-                      <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.18em] text-skyblue-600">
+                      <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.18em] text-skyblue-600 dark:text-skyblue-400">
                         {tier.step}
                       </span>
-                      <h3 className="mt-1 font-display text-lg sm:text-xl font-semibold text-navy-900">
+                      <h3 className="mt-1 font-display text-lg sm:text-xl font-semibold text-navy-900 dark:text-white">
                         {tier.heading}
                       </h3>
-                      <p className="mt-2 text-[13px] sm:text-sm leading-relaxed text-slate-600">{tier.why}</p>
-                      <p className="mt-3 text-[13px] sm:text-sm text-slate-500">
-                        <span className="font-semibold text-navy-800">Best for: </span>
+                      <p className="mt-2 text-[13px] sm:text-sm leading-relaxed text-slate-600 dark:text-slate-300">{tier.why}</p>
+                      <p className="mt-3 text-[13px] sm:text-sm text-slate-500 dark:text-slate-400">
+                        <span className="font-semibold text-navy-800 dark:text-slate-200">Best for: </span>
                         {tier.bestFor.join(" · ")}
                       </p>
                     </div>
@@ -77,7 +77,7 @@ export function SkillJourney() {
                 </div>
                 {i < TIERS.length - 1 && (
                   <div className="flex justify-center py-2.5" aria-hidden="true">
-                    <MoveDown size={18} className="text-skyblue-300" />
+                    <MoveDown size={18} className="text-skyblue-300 dark:text-skyblue-600" />
                   </div>
                 )}
               </div>

@@ -1,22 +1,23 @@
 import Image from "next/image";
 import Link from "next/link";
-import { navLinks, site } from "@/data/site";
+import { legalLinks, navLinks, site } from "@/data/site";
 import { courses } from "@/data/courses";
 import { packages } from "@/data/packages";
+import { PackageName } from "@/components/package-name";
 
 export function SiteFooter() {
   return (
-    <footer className="bg-navy-900 text-white">
-      <div className="container-max grid gap-10 py-12 sm:py-16 md:grid-cols-2 lg:grid-cols-4">
+    <footer className="bg-navy-900 text-white dark:bg-navy-950">
+      <div className="container-max grid gap-10 py-12 sm:py-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
         {/* Brand */}
         <div>
           <Link href="/" className="flex items-center gap-3">
-            <Image src="/logo.png" alt="Esho EduTech" width={40} height={40} className="h-10 w-10 rounded-lg object-contain" />
+            <Image src="/logo.png" alt="Esho EDUTECH" width={40} height={40} className="h-10 w-10 rounded-lg object-contain" />
             <span className="flex flex-col leading-tight">
               <span className="font-display text-lg font-bold">
                 Esho <span className="text-skyblue-400">{site.nameSuffix}</span>
               </span>
-              <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-skyblue-300">{site.location}</span>
+              {/* <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-skyblue-300">{site.location}</span> */}
             </span>
           </Link>
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-navy-100/80">{site.tagline}</p>
@@ -61,7 +62,21 @@ export function SiteFooter() {
             {packages.map((p) => (
               <li key={p.slug}>
                 <Link href={`/packages/${p.slug}`} className="text-navy-100/80 transition-colors hover:text-skyblue-300">
-                  {p.name} <span className="text-skyblue-300/80">· {p.priceLabel}</span>
+                  <PackageName pkg={p} tone="onDark" /> <span className="text-skyblue-300/80">· {p.priceLabel}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        {/* Legal */}
+        <nav aria-label="Legal policies">
+          <h3 className="text-xs font-bold uppercase tracking-[0.18em] text-skyblue-400">Legal</h3>
+          <ul className="mt-4 space-y-2.5 text-sm">
+            {legalLinks.map((link) => (
+              <li key={link.href}>
+                <Link href={link.href} className="text-navy-100/80 transition-colors hover:text-skyblue-300">
+                  {link.label}
                 </Link>
               </li>
             ))}
@@ -70,7 +85,7 @@ export function SiteFooter() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="container-max flex flex-col items-center justify-between gap-2 py-4 text-[13px] text-navy-100/60 sm:flex-row">
+        <div className="container-max flex flex-col items-center justify-between gap-2 py-4 pb-20 text-[13px] text-navy-100/60 sm:flex-row sm:pb-4 sm:pr-56">
           <p>{site.copyright}</p>
           <p>Classroom IT Training · {site.location}</p>
         </div>

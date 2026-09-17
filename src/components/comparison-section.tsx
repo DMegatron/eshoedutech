@@ -16,7 +16,7 @@ const DIRECTION: Record<string, string> = {
 
 export function ComparisonSection() {
   return (
-    <section id="compare" className="bg-white">
+    <section id="compare" className="bg-white dark:bg-navy-900">
       <div className="container-max py-14 sm:py-20">
         <Reveal>
           <SectionHeading
@@ -28,10 +28,10 @@ export function ComparisonSection() {
         </Reveal>
 
         <Reveal delay={0.08}>
-          <div className="mt-9 overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-sm">
+          <div className="mt-9 overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-navy-700 dark:bg-navy-800">
             <table className="w-full min-w-[640px] text-left text-sm">
               <thead>
-                <tr className="border-b border-slate-200 bg-skyblue-50/70 text-xs uppercase tracking-wider text-navy-800">
+                <tr className="border-b border-slate-200 bg-skyblue-50/70 text-xs uppercase tracking-wider text-navy-800 dark:border-navy-700 dark:bg-navy-700/50 dark:text-slate-200">
                   <th className="px-4 py-3 font-bold">Course</th>
                   <th className="px-4 py-3 font-bold">Main Focus</th>
                   <th className="px-4 py-3 font-bold">Level</th>
@@ -39,20 +39,20 @@ export function ComparisonSection() {
                   <th className="px-4 py-3 font-bold">Suggested Direction</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-slate-100 dark:divide-navy-700">
                 {courses.map((c) => (
-                  <tr key={c.slug} className="transition-colors hover:bg-skyblue-50/40">
+                  <tr key={c.slug} className="transition-colors hover:bg-skyblue-50/40 dark:hover:bg-navy-700/40">
                     <td className="px-4 py-3">
-                      <Link href={`/courses/${c.slug}`} className="font-semibold text-skyblue-700 hover:underline">
+                      <Link href={`/courses/${c.slug}`} className="font-semibold text-skyblue-700 hover:underline dark:text-skyblue-400">
                         {c.code}
                       </Link>
                     </td>
-                    <td className="px-4 py-3 text-slate-600">{c.focus}</td>
-                    <td className="px-4 py-3 text-slate-600">{c.level}</td>
+                    <td className="px-4 py-3 text-slate-600 dark:text-slate-300">{c.focus}</td>
+                    <td className="px-4 py-3 text-slate-600 dark:text-slate-300">{c.level}</td>
                     <td className="px-4 py-3">
                       <Check size={16} className="text-skyblue-500" aria-label="Practical included" />
                     </td>
-                    <td className="px-4 py-3 text-slate-600">{DIRECTION[c.slug]}</td>
+                    <td className="px-4 py-3 text-slate-600 dark:text-slate-300">{DIRECTION[c.slug]}</td>
                   </tr>
                 ))}
               </tbody>

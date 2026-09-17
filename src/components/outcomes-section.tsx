@@ -21,7 +21,7 @@ const OUTCOMES = [
 
 export function OutcomesSection() {
   return (
-    <section id="outcomes" className="border-y border-skyblue-100 bg-skyblue-50/70">
+    <section id="outcomes" className="border-y border-skyblue-100 bg-skyblue-50/70 dark:border-navy-700 dark:bg-navy-800/40">
       <div className="container-max py-14 sm:py-20">
         <Reveal>
           <SectionHeading
@@ -35,12 +35,12 @@ export function OutcomesSection() {
         <div className="mt-9 sm:mt-12 grid gap-3 sm:gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
           {OUTCOMES.map((o, i) => (
             <Reveal key={o.title} delay={i * 0.07} className="h-full">
-              <div className="flex h-full flex-col items-center rounded-2xl border border-skyblue-100 bg-white p-4 sm:p-6 text-center shadow-sm">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-skyblue-50 text-skyblue-600 sm:h-12 sm:w-12">
+              <div className="flex h-full flex-col items-center rounded-2xl border border-skyblue-100 bg-white p-4 sm:p-6 text-center shadow-sm dark:border-navy-700 dark:bg-navy-800">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-skyblue-50 text-skyblue-600 sm:h-12 sm:w-12 dark:bg-navy-700 dark:text-skyblue-400">
                   <o.icon size={20} aria-hidden="true" />
                 </div>
-                <h3 className="mt-3 font-display text-sm sm:text-base font-semibold text-navy-900">{o.title}</h3>
-                <p className="mt-1.5 text-xs sm:text-[13px] leading-relaxed text-slate-600">{o.text}</p>
+                <h3 className="mt-3 font-display text-sm sm:text-base font-semibold text-navy-900 dark:text-white">{o.title}</h3>
+                <p className="mt-1.5 text-xs sm:text-[13px] leading-relaxed text-slate-600 dark:text-slate-300">{o.text}</p>
               </div>
             </Reveal>
           ))}

@@ -28,11 +28,11 @@ export function SectionHeading({
           <span className="inline-block h-px w-6 bg-skyblue-500 sm:w-8" aria-hidden="true" />
         )}
       </span>
-      <h2 className="mt-2.5 sm:mt-4 font-display text-2xl sm:text-4xl font-bold tracking-tight text-navy-900 text-balance">
+      <h2 className="mt-2.5 sm:mt-4 font-display text-2xl sm:text-4xl font-bold tracking-tight text-navy-900 text-balance dark:text-white">
         {title}
       </h2>
       {description && (
-        <p className="mt-2.5 sm:mt-4 text-sm sm:text-base text-slate-600 leading-relaxed">
+        <p className="mt-2.5 sm:mt-4 text-sm sm:text-base text-slate-600 leading-relaxed dark:text-slate-300">
           {description}
         </p>
       )}

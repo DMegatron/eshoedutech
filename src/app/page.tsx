@@ -15,7 +15,7 @@ import { SkillJourney } from "@/components/skill-journey";
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen bg-white">
+    <div className="relative min-h-screen bg-white dark:bg-navy-900">
       <SiteHeader />
       <main>
         <Hero />

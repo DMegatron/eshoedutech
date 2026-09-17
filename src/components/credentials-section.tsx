@@ -7,22 +7,22 @@ const STATUS = "To be confirmed";
 
 export function CredentialsSection() {
   return (
-    <section id="credentials" className="bg-white">
+    <section id="credentials" className="bg-white dark:bg-navy-900">
       <div className="container-max py-14 sm:py-20">
         <Reveal>
           <SectionHeading
             align="center"
             eyebrow="Training & Credentials"
             title="Certification information"
-            description="Esho EduTech provides classroom training and practical lab preparation. Detailed certification and exam information will be updated once confirmed by the institute."
+            description="Esho EDUTECH provides classroom training and practical lab preparation. Detailed certification and exam information will be updated once confirmed by the institute."
           />
         </Reveal>
 
         <Reveal delay={0.08}>
-          <div className="mt-9 overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-sm">
+          <div className="mt-9 overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-navy-700 dark:bg-navy-800">
             <table className="w-full min-w-[680px] text-left text-sm">
               <thead>
-                <tr className="border-b border-slate-200 bg-skyblue-50/70 text-xs uppercase tracking-wider text-navy-800">
+                <tr className="border-b border-slate-200 bg-skyblue-50/70 text-xs uppercase tracking-wider text-navy-800 dark:border-navy-700 dark:bg-navy-700/50 dark:text-slate-200">
                   <th className="px-4 py-3 font-bold">Course</th>
                   <th className="px-4 py-3 font-bold">Certification</th>
                   <th className="px-4 py-3 font-bold">Exam Preparation</th>
@@ -30,14 +30,14 @@ export function CredentialsSection() {
                   <th className="px-4 py-3 font-bold">Lab Training</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-slate-100 dark:divide-navy-700">
                 {courses.map((c) => (
                   <tr key={c.slug}>
-                    <td className="px-4 py-3 font-semibold text-navy-900">{c.code}</td>
-                    <td className="px-4 py-3 text-slate-400 italic">{STATUS}</td>
-                    <td className="px-4 py-3 text-slate-400 italic">{STATUS}</td>
-                    <td className="px-4 py-3 text-slate-400 italic">{STATUS}</td>
-                    <td className="px-4 py-3 text-skyblue-700">✓ Included</td>
+                    <td className="px-4 py-3 font-semibold text-navy-900 dark:text-white">{c.code}</td>
+                    <td className="px-4 py-3 text-slate-400 italic dark:text-slate-500">{STATUS}</td>
+                    <td className="px-4 py-3 text-slate-400 italic dark:text-slate-500">{STATUS}</td>
+                    <td className="px-4 py-3 text-slate-400 italic dark:text-slate-500">{STATUS}</td>
+                    <td className="px-4 py-3 text-skyblue-700 dark:text-skyblue-400">✓ Included</td>
                   </tr>
                 ))}
               </tbody>
@@ -46,8 +46,8 @@ export function CredentialsSection() {
         </Reveal>
 
         <Reveal delay={0.12}>
-          <p className="mx-auto mt-5 max-w-2xl text-center text-[13px] sm:text-sm italic text-slate-500">
-            Certification details will be updated by Esho EduTech. Please speak to an advisor for current
+          <p className="mx-auto mt-5 max-w-2xl text-center text-[13px] sm:text-sm italic text-slate-500 dark:text-slate-400">
+            Certification details will be updated by Esho EDUTECH. Please speak to an advisor for current
             certification and exam guidance — results stay honest when expectations are honest.
           </p>
         </Reveal>

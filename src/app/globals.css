@@ -1,10 +1,13 @@
 @import "tailwindcss";
 
+/* Class-based dark mode: <html class="dark"> switched by the theme toggle */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-display: var(--font-grotesk), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
 
-  /* ESHO EduTech sky blue (#42c2f5 primary) */
+  /* Esho EDUTECH sky blue (#42c2f5 primary) */
   --color-skyblue-50: #f2faff;
   --color-skyblue-100: #e1f4fe;
   --color-skyblue-200: #c0e9fd;
@@ -24,6 +27,7 @@
   --color-navy-700: #173455;
   --color-navy-800: #102a47;
   --color-navy-900: #0b2038;
+  --color-navy-950: #06172a;
 
   --color-muted: #5b6b7f; /* subtle grey body text */
 }
@@ -32,8 +36,24 @@ html {
   scroll-behavior: smooth;
 }
 
+@keyframes consent-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 body {
-  @apply bg-white font-sans text-slate-600 antialiased;
+  @apply bg-white font-sans text-slate-600 antialiased dark:bg-navy-900 dark:text-slate-300;
+}
+
+/* Native form controls, scrollbars and selects follow the theme */
+html.dark {
+  color-scheme: dark;
 }
 
 ::selection {
@@ -55,7 +75,7 @@ section[id] {
   }
 
   .btn-outline {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-navy-800 transition-all duration-200 hover:-translate-y-0.5 hover:border-skyblue-400 hover:text-skyblue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-skyblue-400;
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-navy-800 transition-all duration-200 hover:-translate-y-0.5 hover:border-skyblue-400 hover:text-skyblue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-skyblue-400 dark:border-navy-600 dark:bg-navy-800 dark:text-slate-100 dark:hover:border-skyblue-500 dark:hover:text-skyblue-300;
   }
 
   .btn-lg {
@@ -75,9 +95,9 @@ section[id] {
     @apply inline-block h-px w-8 bg-skyblue-500;
   }
 
-  /* Clean white info card */
+  /* Info card — white in light mode, elevated navy in dark mode */
   .card {
-    @apply rounded-2xl border border-slate-200 bg-white shadow-sm transition-shadow duration-300;
+    @apply rounded-2xl border border-slate-200 bg-white shadow-sm transition-shadow duration-300 dark:border-navy-700 dark:bg-navy-800;
   }
 
   .card-hover {
@@ -90,4 +110,10 @@ section[id] {
       linear-gradient(to bottom, rgb(34 130 180 / 0.06) 1px, transparent 1px);
     background-size: 40px 40px;
   }
+}
+
+.dark .bg-grid-light {
+  background-image:
+    linear-gradient(to right, rgb(143 216 251 / 0.09) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(143 216 251 / 0.09) 1px, transparent 1px);
 }

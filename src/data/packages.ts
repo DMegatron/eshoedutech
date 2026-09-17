@@ -185,7 +185,7 @@ export const packages: Package[] = [
     labIncluded: true,
     focus: "Hardware + Networking + Microsoft + Cisco + Advanced Networking + Linux",
     description:
-      "The broadest Esho EduTech package, combining multiple IT infrastructure and networking disciplines in one program.",
+      "The broadest Esho EDUTECH package, combining multiple IT infrastructure and networking disciplines in one program.",
     idealFor: [
       "Learners who want comprehensive IT training",
       "Students who want maximum pathway flexibility",
@@ -207,7 +207,7 @@ export const packages: Package[] = [
       "IT infrastructure concepts",
     ],
     outcome:
-      "The most complete skill set Esho EduTech offers — across infrastructure, networking and Linux environments.",
+      "The most complete skill set Esho EDUTECH offers — across infrastructure, networking and Linux environments.",
     direction: "Comprehensive IT Infrastructure / Networking / System Administration",
     featured: true,
   },

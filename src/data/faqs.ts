@@ -42,6 +42,6 @@ export const faqs: Faq[] = [
   {
     question: "Are certifications included?",
     answer:
-      "Esho EduTech provides classroom training and practical lab preparation. Certification and examination details will be confirmed and updated by the institute — please ask our advisors for the latest information.",
+      "Esho EDUTECH provides classroom training and practical lab preparation. Certification and examination details will be confirmed and updated by the institute — please ask our advisors for the latest information.",
   },
 ];

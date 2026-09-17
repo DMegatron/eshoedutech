@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X, ArrowRight } from "lucide-react";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { navLinks, site } from "@/data/site";
 import { cn } from "@/lib/utils";
 
@@ -47,25 +48,25 @@ export function SiteHeader() {
   const HOME = pathname === "/";
 
   return (
-    <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/90 backdrop-blur-md">
+    <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/90 backdrop-blur-md dark:border-navy-700/80 dark:bg-navy-900/85">
       <div className="container-max flex h-14 sm:h-[68px] items-center justify-between gap-3">
         {/* Brand */}
-        <Link href="/" className="flex min-w-0 items-center gap-2 sm:gap-3" aria-label="Esho EduTech home">
+        <Link href="/" className="flex min-w-0 items-center gap-2 sm:gap-3" aria-label="Esho EDUTECH home">
           <Image
             src="/logo.png"
-            alt="Esho EduTech"
+            alt="Esho EDUTECH"
             width={40}
             height={40}
             className="h-9 w-9 rounded-lg object-contain sm:h-10 sm:w-10"
             priority
           />
           <span className="flex min-w-0 flex-col leading-tight">
-            <span className="truncate font-display text-base font-bold text-navy-900 sm:text-lg">
+            <span className="truncate font-display text-base font-bold text-navy-900 sm:text-lg dark:text-white">
               Esho <span className="text-skyblue-500">{site.nameSuffix}</span>
             </span>
-            <span className="hidden text-[10px] font-semibold uppercase tracking-[0.18em] text-skyblue-600 sm:block">
+            {/* <span className="hidden text-[10px] font-semibold uppercase tracking-[0.18em] text-skyblue-600 sm:block">
               {site.location}
-            </span>
+            </span> */}
           </span>
         </Link>
 
@@ -76,7 +77,7 @@ export function SiteHeader() {
               key={link.label}
               href={link.href}
               onClick={(e) => handleNav(e, link.href)}
-              className="rounded-lg px-3 py-2 text-sm font-medium text-navy-700 transition-colors hover:bg-skyblue-50 hover:text-skyblue-700"
+              className="rounded-lg px-3 py-2 text-sm font-medium text-navy-700 transition-colors hover:bg-skyblue-50 hover:text-skyblue-700 dark:text-slate-300 dark:hover:bg-navy-800 dark:hover:text-skyblue-400"
             >
               {link.label}
             </a>
@@ -89,13 +90,14 @@ export function SiteHeader() {
           </a>
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 text-navy-800 transition-colors hover:border-skyblue-400 hover:text-skyblue-600 lg:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 text-navy-800 transition-colors hover:border-skyblue-400 hover:text-skyblue-600 lg:hidden dark:border-navy-600 dark:text-slate-200 dark:hover:border-skyblue-400 dark:hover:text-skyblue-400"
             aria-expanded={mobileOpen}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             onClick={() => setMobileOpen((v) => !v)}
           >
             {mobileOpen ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
           </button>
+          <ThemeToggle />
         </div>
       </div>
 
@@ -109,7 +111,7 @@ export function SiteHeader() {
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.25, ease: "easeInOut" }}
             id="mobile-menu"
-            className="overflow-hidden border-t border-slate-200 bg-white lg:hidden"
+            className="overflow-hidden border-t border-slate-200 bg-white lg:hidden dark:border-navy-700 dark:bg-navy-900"
           >
             <nav className="container-max flex flex-col gap-1 py-4" aria-label="Mobile">
               {navLinks.map((link) => (
@@ -117,15 +119,15 @@ export function SiteHeader() {
                   key={link.label}
                   href={link.href}
                   onClick={(e) => handleNav(e, link.href)}
-                  className="rounded-lg px-3 py-2.5 text-sm font-medium text-navy-800 transition-colors hover:bg-skyblue-50 hover:text-skyblue-700"
+                  className="rounded-lg px-3 py-2.5 text-sm font-medium text-navy-800 transition-colors hover:bg-skyblue-50 hover:text-skyblue-700 dark:text-slate-200 dark:hover:bg-navy-800 dark:hover:text-skyblue-400"
                 >
                   {link.label}
                 </a>
               ))}
-              <div className="mt-3 flex flex-col gap-2 border-t border-slate-100 pt-3">
+              <div className="mt-3 flex flex-col gap-2 border-t border-slate-100 pt-3 dark:border-navy-700">
                 <a
                   href={site.phoneHref}
-                  className="rounded-lg bg-skyblue-50 px-3 py-2.5 text-sm font-semibold text-skyblue-700 text-center"
+                  className="rounded-lg bg-skyblue-50 px-3 py-2.5 text-sm font-semibold text-skyblue-700 text-center dark:bg-navy-800 dark:text-skyblue-300"
                 >
                   Call: {site.phone}
                 </a>

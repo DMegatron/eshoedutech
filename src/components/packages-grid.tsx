@@ -9,7 +9,7 @@ export function PackagesGrid() {
   const rest = packages.filter((p) => !p.featured);
 
   return (
-    <section id="packages" className="border-y border-skyblue-100 bg-skyblue-50/70">
+    <section id="packages" className="border-y border-skyblue-100 bg-skyblue-50/70 dark:border-navy-700 dark:bg-navy-800/40">
       <div className="container-max py-14 sm:py-20">
         <Reveal>
           <SectionHeading
@@ -43,8 +43,8 @@ export function PackagesGrid() {
         </div>
 
         <Reveal delay={0.1}>
-          <p className="mt-8 text-center text-sm text-slate-500">
-            Starting from <span className="font-bold text-navy-900">₹4,999</span> — practical/lab training included in every package.
+          <p className="mt-8 text-center text-sm text-slate-500 dark:text-slate-400">
+            Starting from <span className="font-bold text-navy-900 dark:text-white">₹4,999</span> — practical/lab training included in every package.
           </p>
         </Reveal>
       </div>

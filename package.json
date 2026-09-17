@@ -10,12 +10,17 @@
     "print-owner": "node scripts/print-owner.js"
   },
   "dependencies": {
+    "@types/react-google-recaptcha": "^2.1.9",
+    "@upstash/ratelimit": "^2.1.0",
+    "@upstash/redis": "^1.38.4",
     "@vercel/analytics": "^2.0.1",
     "framer-motion": "^13.1.1",
     "lucide-react": "^1.38.0",
     "next": "16.3.3",
     "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react-dom": "19.2.8",
+    "react-google-recaptcha": "^3.1.0",
+    "resend": "^6.28.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
