@@ -101,11 +101,7 @@ export async function POST(req: Request) {
     if (!result.ok) {
       console.error("[enquiry] reCAPTCHA rejected:", result.codes);
       return NextResponse.json(
-        {
-          ok: false,
-          error: "reCAPTCHA verification failed — please tick the box and try again.",
-          codes: result.codes,
-        },
+        { ok: false, error: "reCAPTCHA verification failed — please tick the box and try again." },
         { status: 400 },
       );
     }
