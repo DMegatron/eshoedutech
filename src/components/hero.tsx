@@ -4,6 +4,11 @@ import Link from "next/link";
 import { motion, type Variants } from "framer-motion";
 import { ArrowRight, Monitor, Network, BookOpen, ShieldCheck, Terminal, FlaskConical } from "lucide-react";
 import { scrollToSection } from "@/components/site-header";
+import { packages } from "@/data/packages";
+
+/** Lowest package price — single source of truth in @/data/packages */
+const MIN_PRICE = Math.min(...packages.map((p) => p.price));
+const MIN_PRICE_LABEL = `₹${MIN_PRICE.toLocaleString("en-IN")}`;
 
 const LEARN_ITEMS = [
   { icon: Monitor, label: "A+ Hardware" },
@@ -83,6 +88,14 @@ export function Hero() {
               View Packages
             </Link>
           </motion.div>
+          <motion.p
+            variants={heroItem}
+            className="mt-4 sm:mt-5 text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400"
+          >
+            {packages.length} combo packages · starting from{" "}
+            <span className="font-bold text-skyblue-700 dark:text-skyblue-300">{MIN_PRICE_LABEL}</span>{" "}
+            · practical/lab training included
+          </motion.p>
         </motion.div>
 
         {/* What you can learn strip */}

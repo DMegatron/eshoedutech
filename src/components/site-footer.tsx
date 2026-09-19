@@ -12,7 +12,7 @@ export function SiteFooter() {
         {/* Brand */}
         <div>
           <Link href="/" className="flex items-center gap-3">
-            <Image src="/logo.png" alt="Esho EDUTECH" width={40} height={40} className="h-10 w-10 rounded-lg object-contain" />
+            <Image src="/logo-mark.png" alt="Esho EDUTECH" width={40} height={40} className="h-10 w-10 object-contain" />
             <span className="flex flex-col leading-tight">
               <span className="font-display text-lg font-bold">
                 Esho <span className="text-skyblue-400">{site.nameSuffix}</span>
