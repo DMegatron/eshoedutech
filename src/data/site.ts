@@ -20,14 +20,11 @@ export const navLinks: NavLink[] = [
   { label: "Home", href: "/#home" },
   { label: "Courses", href: "/#courses" },
   { label: "Packages", href: "/#packages" },
-  { label: "Which Program?", href: "/#pick" },
-  { label: "FAQ", href: "/#faq" },
   { label: "Contact", href: "/#contact" },
 ];
 
 export const legalLinks: NavLink[] = [
   { label: "Privacy Policy", href: "/privacy-policy" },
   { label: "Copyright Policy", href: "/copyright-policy" },
-  { label: "Data Policy", href: "/data-policy" },
   { label: "Cookies Policy", href: "/cookies-policy" },
 ];
