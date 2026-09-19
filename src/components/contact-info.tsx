@@ -14,7 +14,7 @@ export function ContactInfo() {
           description="Admissions are open — reach us on phone or email, or drop by the centre during working hours."
         />
 
-        <div className="mx-auto mt-9 sm:mt-12 grid max-w-4xl gap-4 sm:gap-5 sm:grid-cols-3">
+        <div className="mx-auto mt-9 sm:mt-12 grid max-w-4xl grid-cols-3 gap-2 lg:gap-5">
           <a href={site.phoneHref} className="card card-hover flex flex-col items-center gap-2 p-6 text-center">
             <Phone size={20} className="text-skyblue-500" aria-hidden="true" />
             <p className="text-xs font-bold uppercase tracking-wider text-slate-500">Call Us</p>

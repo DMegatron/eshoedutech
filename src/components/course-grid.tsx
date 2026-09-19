@@ -14,7 +14,7 @@ export function CourseGrid() {
           description="Every course is classroom-based with a heavy practical component."
         />
 
-        <div className="mt-9 sm:mt-12 grid gap-4 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-9 sm:mt-12 grid grid-cols-3 gap-2 lg:gap-5">
           {courses.map((course) => (
             <article key={course.slug} className="card card-hover flex h-full flex-col p-5 sm:p-6">
               <div className="flex items-start justify-between gap-3">

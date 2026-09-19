@@ -5,7 +5,7 @@ import { legalLinks, navLinks, site } from "@/data/site";
 export function SiteFooter() {
   return (
     <footer className="bg-navy-900 text-white">
-      <div className="container-max grid gap-10 py-12 sm:py-16 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="container-max grid grid-cols-3 gap-3 py-12 sm:py-16 lg:gap-10">
         {/* Brand */}
         <div>
           <Link href="/" className="flex items-center gap-3">

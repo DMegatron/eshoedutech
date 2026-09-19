@@ -22,17 +22,17 @@ export function Hero() {
           <span className="chip border border-skyblue-200 bg-white text-skyblue-700">
             <FlaskConical size={12} aria-hidden="true" /> Classroom training · Sector V, Kolkata
           </span>
-          <h1 className="mt-5 sm:mt-7 max-w-3xl font-display text-3xl leading-[1.12] sm:text-5xl lg:text-6xl font-bold tracking-tight text-navy-900 text-balance">
+          <h1 className="mt-5 sm:mt-7 max-w-3xl font-display text-5xl leading-[1.12] lg:text-6xl font-bold tracking-tight text-navy-900">
             Learn IT Skills. Practice Them.{" "}
             <span className="bg-gradient-to-r from-skyblue-600 via-skyblue-400 to-skyblue-600 bg-clip-text text-transparent">
               Build Your Career.
             </span>
           </h1>
-          <p className="mt-4 sm:mt-6 max-w-2xl text-sm sm:text-lg leading-relaxed text-slate-600 text-pretty">
+          <p className="mt-4 sm:mt-6 max-w-2xl text-lg leading-relaxed text-slate-600">
             Classroom-based training in Hardware, Networking, Microsoft, Cisco and Linux — with a strong
             focus on practical learning and hands-on lab experience.
           </p>
-          <div className="mt-7 sm:mt-9 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
+          <div className="mt-7 sm:mt-9 flex items-center justify-center gap-2.5">
             <Link href="/#courses" className="btn-primary btn-lg group">
               Explore Courses <ArrowRight size={17} aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
@@ -49,7 +49,7 @@ export function Hero() {
 
         {/* What you can learn strip */}
         <div className="mt-12 sm:mt-16 w-full">
-          <div className="mx-auto grid max-w-3xl grid-cols-2 gap-2 sm:grid-cols-5 sm:gap-3">
+          <div className="mx-auto grid max-w-3xl grid-cols-5 gap-1.5 lg:gap-3">
             {LEARN_ITEMS.map((item) => (
               <div
                 key={item.label}

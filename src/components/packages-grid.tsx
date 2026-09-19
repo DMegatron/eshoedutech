@@ -22,12 +22,12 @@ export function PackagesGrid() {
           <PackageCard pkg={featured} />
         </div>
 
-        <div className="mt-4 sm:mt-5 grid gap-4 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-4 sm:mt-5 grid grid-cols-3 gap-2 lg:gap-5">
           {rest.slice(0, 3).map((pkg) => (
             <PackageCard key={pkg.slug} pkg={pkg} />
           ))}
         </div>
-        <div className="mx-auto mt-4 sm:mt-5 grid max-w-4xl gap-4 sm:gap-5 sm:grid-cols-2">
+        <div className="mx-auto mt-4 sm:mt-5 grid max-w-4xl grid-cols-2 gap-2 lg:gap-5">
           {rest.slice(3).map((pkg) => (
             <PackageCard key={pkg.slug} pkg={pkg} />
           ))}
